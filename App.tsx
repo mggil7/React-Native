@@ -1,11 +1,29 @@
+//https://www.youtube.com/watch?v=bIQII7gTXDE&list=PLY3ncAV1dSVA9ltOEMgzT8ZTZiccpOUkX
+
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, FlatList } from 'react-native';
+
+const days = [...Array(24)].map((val, index) => index + 1);
+console.log(days)
 
 export default function App() {
+
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <Text>TestTypeSCript with React Native</Text>
+
+      <FlatList 
+        data={days}
+        contentContainerStyle={styles.content}
+        columnWrapperStyle={styles.column}
+        numColumns={2}
+        renderItem={({ item })=>(
+          <View style={styles.box}>
+          <Text style={styles.text}>{ item }</Text>
+        </View>
+        )}
+      />
+
       <StatusBar style="auto" />
     </View>
   );
@@ -14,8 +32,41 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: '#FFF',
+
+    
+
+  
   },
+  content: {
+    gap:10,
+    padding:50
+  },
+
+  column:{
+    gap:10,
+  },
+
+  box: {
+    backgroundColor: '#F9EDE3',
+   /*  width:100,
+    height:100, */
+
+    flex: 1,
+    aspectRatio:1,
+
+    borderWidth:StyleSheet.hairlineWidth,
+    borderColor: '#9b4521',
+    borderRadius:20,
+
+    justifyContent:'center',
+    alignItems:'center'
+    
+  },
+
+  text: {
+    color:'#9b4521',
+    fontSize:50,
+
+  }
 });
